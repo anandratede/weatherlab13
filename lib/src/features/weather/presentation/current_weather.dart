@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:open_weather_example_flutter/src/features/weather/application/providers.dart';
 import 'package:open_weather_example_flutter/src/features/weather/domain/weather/weather_data.dart';
-import 'package:open_weather_example_flutter/src/features/weather/presentation/weather_icon_image.dart';
+import 'package:open_weather_example_flutter/src/features/weather/presentation/weather_icon_image.dart' as WeatherPresentation;
 
 class CurrentWeather extends ConsumerWidget {
-  const CurrentWeather({super.key});
+  const CurrentWeather({Key? key}); // Remove super.key
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final weatherDataValue = ref.watch(currentWeatherProvider);
@@ -25,7 +26,8 @@ class CurrentWeather extends ConsumerWidget {
 }
 
 class CurrentWeatherContents extends ConsumerWidget {
-  const CurrentWeatherContents({super.key, required this.data});
+  const CurrentWeatherContents({Key? key, required this.data}) : super(key: key); // Add super(key: key)
+
   final WeatherData data;
 
   @override
@@ -39,7 +41,7 @@ class CurrentWeatherContents extends ConsumerWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        WeatherIconImage(iconUrl: data.iconUrl, size: 120),
+        WeatherPresentation.WeatherIconImage(iconUrl: data.iconUrl, size: 120),
         Text(temp, style: textTheme.displayMedium),
         Text(highAndLow, style: textTheme.bodyMedium),
       ],

@@ -3,10 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:open_weather_example_flutter/src/features/weather/application/providers.dart';
 import 'package:open_weather_example_flutter/src/features/weather/domain/weather/weather_data.dart';
-import 'package:open_weather_example_flutter/src/features/weather/presentation/weather_icon_image.dart';
+import 'package:open_weather_example_flutter/src/features/weather/presentation/weather_icon_image.dart' as WeatherIcon;
 
 class HourlyWeather extends ConsumerWidget {
-  const HourlyWeather({super.key});
+  const HourlyWeather({Key? key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,7 +28,7 @@ class HourlyWeather extends ConsumerWidget {
 }
 
 class HourlyWeatherRow extends StatelessWidget {
-  const HourlyWeatherRow({super.key, required this.weatherDataItems});
+  const HourlyWeatherRow({Key? key, required this.weatherDataItems});
   final List<WeatherData> weatherDataItems;
 
   @override
@@ -43,7 +43,7 @@ class HourlyWeatherRow extends StatelessWidget {
 }
 
 class HourlyWeatherItem extends ConsumerWidget {
-  const HourlyWeatherItem({super.key, required this.data});
+  const HourlyWeatherItem({Key? key, required this.data});
   final WeatherData data;
 
   @override
@@ -56,14 +56,14 @@ class HourlyWeatherItem extends ConsumerWidget {
         children: [
           Text(
             DateFormat.E().format(data.date),
-            style: textTheme.bodySmall!.copyWith(fontWeight: fontWeight),
+            style: textTheme.bodyLarge!.copyWith(fontWeight: fontWeight),
           ),
           const SizedBox(height: 8),
-          WeatherIconImage(iconUrl: data.iconUrl, size: 48),
+          WeatherIcon.WeatherIconImage(iconUrl: data.iconUrl, size: 48),
           const SizedBox(height: 8),
           Text(
             '$temp°',
-            style: textTheme.bodyLarge!.copyWith(fontWeight: fontWeight),
+            style: textTheme.bodyMedium!.copyWith(fontWeight: fontWeight),
           ),
         ],
       ),
